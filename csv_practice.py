@@ -1,5 +1,6 @@
 import csv
 import random
+import numpy as np
 
 data_file = "/Users/nicholasscalzone/Documents/COMPUTER SCIENCE CLASSES/Machine Learning/Homework1/test_csv.csv"
 training_data_path = "/Users/nicholasscalzone/Documents/COMPUTER SCIENCE CLASSES/Machine Learning/Homework1/mnist_train.csv"
@@ -31,9 +32,8 @@ save_path = "/Users/nicholasscalzone/Documents/COMPUTER SCIENCE CLASSES/Machine 
 #     writer.writerows(results)
 
 
-testlist = [[1,2,3],[4,5,6],[7,8,9]]
+test1 = [1,2,3]
+test2 = [4,5,6]
 
-sublist = testlist[1][1:]
-
-
-print(sublist)
+dot = np.dot(test1, test2)
+print(dot)

@@ -4,12 +4,12 @@ from typing import List
 import sys
 from tqdm import tqdm
 
-ETA = 0.01
-
+ETA = 0.001
+epochs = 20
 training_data_path = "/Users/nicholasscalzone/Documents/COMPUTER SCIENCE CLASSES/Machine Learning/Homework1/mnist_train_with_bias.csv"
 weight_data_path = "/Users/nicholasscalzone/Documents/COMPUTER SCIENCE CLASSES/Machine Learning/Homework1/perceptron_weights.csv"
 # weight_data_path = "/Users/nicholasscalzone/Documents/COMPUTER SCIENCE CLASSES/Machine Learning/Homework1/updated_model_weights-40epochs.csv"
-save_path = "/Users/nicholasscalzone/Documents/COMPUTER SCIENCE CLASSES/Machine Learning/Homework1/lr01updated_model_weights-5epochs-updated.csv"
+save_path = f"/Users/nicholasscalzone/Documents/COMPUTER SCIENCE CLASSES/Machine Learning/Homework1/lr001updated_model_weights-{epochs}epochs.csv"
 
 
 training_data = []
@@ -37,7 +37,7 @@ def evaluate_results(results:List[float])->int:
     return predicted_value
 
 def update_weights(weights, inputs, target, results)->List[float]:
-    # print(f"Results: {results}\n Target is: {target}")
+
     target = int(target)
     for i in range(len(weights)):
         y = 0
@@ -45,9 +45,9 @@ def update_weights(weights, inputs, target, results)->List[float]:
         if results[i] > 0:
             y = 1
         if i == target:
-            # print(f"At target: {target}")
+
             t = 1
-        # print(f"Calling function at index {i}: y = {y}\nt={t}")
+
         for j in range(len(weights[i])):
             weights[i][j] = update(weight=weights[i][j], y=y, t=t, x=inputs[j])
     return weights
@@ -56,7 +56,7 @@ def update(weight:float, y:float, t:float, x:float)->float:
     updated_weight = weight + (ETA * (t - y) * x)
     return updated_weight
 
-epochs = 5
+
 epoch = 0
 for epoch in tqdm(range(epochs)):
     test_set_size = 60000
@@ -83,33 +83,3 @@ for epoch in tqdm(range(epochs)):
 with open(save_path, 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerows(model_weights)
-    
-    
-    
-
-
-    # output_total = 0
-    # predicted_value = -1
-    # for i in range(len(results)):
-    #     if results[i] == 1:
-    #         output_total += 1
-    #         predicted_value = i 
-    # if output_total > 1:
-    #     predicted_value = -1
-    
-    
-    
-        # for i in range(len(weights)):
-    #     if i == target:
-    #         if results[i] != 1:
-    #             for j in range(len(weights[i])):
-    #                 weights[i][j] = update(weight=weights[i][j], y=0, t=1, x=inputs[j])
-    #     else:
-    #         if results[i] != 0:
-    #             for j in range(len(weights[i])):
-    #                 weights[i][j] = update(weight=weights[i][j], y=1, t=0, x=inputs[j])
-    
-    
-        # result = 0
-    # if test > 0:
-    #     result = 1

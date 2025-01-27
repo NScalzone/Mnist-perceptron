@@ -3,9 +3,11 @@ import numpy as np
 from typing import List
 import sys
 
+epoch = 10
 testing_data_path = "/Users/nicholasscalzone/Documents/COMPUTER SCIENCE CLASSES/Machine Learning/Homework1/mnist_test_with_bias.csv"
+# testing_data_path = "/Users/nicholasscalzone/Documents/COMPUTER SCIENCE CLASSES/Machine Learning/Homework1/mnist_train_with_bias.csv"
 weight_data_path = "/Users/nicholasscalzone/Documents/COMPUTER SCIENCE CLASSES/Machine Learning/Homework1/perceptron_weights.csv"
-trained_weight_data_path = "/Users/nicholasscalzone/Documents/COMPUTER SCIENCE CLASSES/Machine Learning/Homework1/lr01updated_model_weights-5epochs-updated.csv"
+trained_weight_data_path = f"/Users/nicholasscalzone/Documents/COMPUTER SCIENCE CLASSES/Machine Learning/Homework1/lr001updated_model_weights-{epoch}epochs.csv"
 
 testing_data = []
 with open(testing_data_path) as csvfile:
@@ -24,9 +26,6 @@ def run_test(test_vals:List[float], weights:List[float])->float:
         print(f"Array length mismatched, exiting. test_val_length: {len(test_vals)}, weights length: {len(weights)}")
         sys.exit(1)
     test = np.dot(test_vals, weights)
-    # result = 0
-    # if test > 0:
-    #     result = 1
     return test
 
 def evaluate_results(results:List[float])->int:

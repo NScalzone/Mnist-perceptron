@@ -32,8 +32,7 @@ save_path = "/Users/nicholasscalzone/Documents/COMPUTER SCIENCE CLASSES/Machine 
 #     writer.writerows(results)
 
 
-test1 = [1,2,3]
-test2 = [4,5,6]
+test1 = [1,2,3,6,5,4]
 
-dot = np.dot(test1, test2)
-print(dot)
+maxval = max(test1)
+print(test1.index(maxval))
